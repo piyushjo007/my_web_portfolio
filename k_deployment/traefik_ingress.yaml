@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: myportfolio
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`whoami2.learningreliability.site`)
+      kind: Rule
+      services:
+        - name: myportfolio
+          port: 80
+  tls:
+    secretName: linode-dns01-learningreliability-tls
