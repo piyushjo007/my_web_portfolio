@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - uses: actions/checkout@v4
+# Login to Docker Hub using the docker/login-action. The username and password are stored as secrets in the GitHub repository for security reasons.
+# these secrets are tend to expire after 15 days.
+    - uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_TOKEN }}
+
+    - name: Build and Push Docker image 
+      run: |
+        TAG=${{ github.run_number }}
+        IMAGE=${{ secrets.DOCKER_USERNAME }}/portfolio
+        docker build . --file ./docker/SRE/Dockerfile --tag $IMAGE:V_0.$TAG
+        docker push $IMAGE:V_0.$TAG

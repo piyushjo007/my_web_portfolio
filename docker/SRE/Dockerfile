@@ -5,10 +5,11 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy portfolio website to nginx html directory
-COPY index.html /usr/share/nginx/html/
+COPY ./docker/SRE/test_4.html /usr/share/nginx/html/index.html
+COPY ./docker/SRE/skills.js /usr/share/nginx/html/skills.js
 
 # Copy custom nginx config for SPA behavior
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./docker/SRE/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
 EXPOSE 80

@@ -7,7 +7,12 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`whoami2.learningreliability.site`)
+    - match: Host(`whoami.learningreliability.site`)
+      kind: Rule
+      services:
+        - name: myportfolio
+          port: 80
+    - match: Host(`kaunhumai.learningreliability.site`)
       kind: Rule
       services:
         - name: myportfolio
