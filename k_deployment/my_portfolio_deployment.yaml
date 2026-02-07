@@ -4,7 +4,7 @@ metadata:
   name: myportfolio-deployment
   namespace: default
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: myportfolio
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: myportfolio
-          image: joship4/portfolio:latest
+          image: joship4/portfolio:V_0.1
           imagePullPolicy: Always
           ports:
             - containerPort: 80
