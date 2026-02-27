@@ -26,5 +26,6 @@ jobs:
       run: |
         TAG=${{ github.run_number }}
         IMAGE=${{ secrets.DOCKER_USERNAME }}/portfolio
-        docker build . --file ./docker/SRE/Dockerfile --tag $IMAGE:V_0.$TAG
+        cd ./docker/SRE
+        docker build . --file Dockerfile --tag $IMAGE:V_0.$TAG
         docker push $IMAGE:V_0.$TAG
